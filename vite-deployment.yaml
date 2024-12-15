@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vue-vite-app
+spec:
+  selector:
+    matchLabels:
+      app: vue-vite-app
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: vue-vite-app
+    spec:
+      containers:
+        - name: vue-vite-app
+          image: your-node-vite-image
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+          env:
+            - name: NODE_ENV
+              value: 'production'
+            - name: DB_HOST
+              value: 'mysql-service'
+            - name: DB_PORT
+              value: '3306'
+            - name: DB_NAME
+              value: 'mydb'
+            - name: DB_USER
+              value: 'root'
+            - name: DB_PASSWORD
+              value: 'rootpassword'
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: vue-vite-service
+spec:
+  ports:
+    - port: 8080
+      targetPort: 80
+  selector:
+    app: vue-vite-app
+  type: NodePort
