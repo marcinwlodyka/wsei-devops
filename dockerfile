@@ -13,17 +13,23 @@ RUN npm install
 # Step 5: Copy the entire project into the container
 COPY . .
 
-# Step 6: Build the Vue.js project with Vite
+# Step 6: Build the Nuxt.js project
 RUN npm run build
 
 # Step 7: Create a production image with a lightweight server
-FROM nginx:alpine
+FROM node:18-alpine
 
-# Step 8: Copy the build files from the build stage to the nginx public directory
-COPY --from=build /app/dist /usr/share/nginx/html
+# Step 8: Set the working directory in the container
+WORKDIR /app
 
-# Step 9: Expose the default HTTP port
-EXPOSE 80
+# Step 9: Copy the build files from the build stage
+COPY --from=build /app ./
 
-# Step 10: Start Nginx server
-CMD ["nginx", "-g", "daemon off;"]
+# Step 10: Install only production dependencies
+RUN npm install --production
+
+# Step 11: Expose the default HTTP port
+EXPOSE 3000
+
+# Step 12: Start the Nuxt.js server
+CMD ["npm", "start"]

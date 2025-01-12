@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: vue-vite-app
+  name: nuxt-app
 spec:
   selector:
     matchLabels:
-      app: vue-vite-app
+      app: nuxt-app
   replicas: 3
   template:
     metadata:
       labels:
-        app: vue-vite-app
+        app: nuxt-app
     spec:
       containers:
-        - name: vue-vite-app
-          image: your-node-vite-image
+        - name: nuxt-app
+          image: your-node-nuxt-image
           imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 80
+            - containerPort: 3000
           env:
             - name: NODE_ENV
               value: 'production'
@@ -35,11 +35,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: vue-vite-service
+  name: nuxt-service
 spec:
   ports:
-    - port: 8080
-      targetPort: 80
+    - port: 3000
+      targetPort: 3000
   selector:
-    app: vue-vite-app
+    app: nuxt-app
   type: NodePort

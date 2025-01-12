@@ -12,16 +12,24 @@ services:
       - my-network
     volumes:
       - mysql-data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
 
-  vue-vite-app:
+  nuxt-app:
     build: .
-    container_name: vue-vite-app
+    container_name: nuxt-app
     ports:
-      - "8080:80"
+      - "3000:3000"
     depends_on:
       - mysql-db
     networks:
       - my-network
+    environment:
+      - NODE_ENV=production
+      - DB_HOST=mysql-db
+      - DB_PORT=3306
+      - DB_NAME=mydb
+      - DB_USER=root
+      - DB_PASSWORD=rootpassword
 
 networks:
   my-network:
