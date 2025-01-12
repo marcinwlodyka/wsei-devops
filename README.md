@@ -329,3 +329,15 @@ spec:
 - kind: Typ zasobu, w tym przypadku PersistentVolumeClaim.
 - metadata: Metadane, takie jak nazwa zasobu.
 - spec: Specyfikacja woluminu, w tym tryb dostępu i zasoby.
+
+## Wnioski
+
+DevOps to zbiór systemów mających na celu pomoc w zarządzania projektem, lub ułatwienie pracy nad nim. Do tych systemów zalicza się: konteneryzacja, automatyzacja jak i wiele czynników związanych z pracą w chmurze.
+
+Wiele systemów DevOps'owych może nie wydawać się koniecznych jeśli pracujemy sami, ale im większy mamy zespół i projekt tym częściej nam pomagają.
+
+W wypadku dużych projektów które ciągle są rozwijane, dodawane są ciągle nowe zmiany które muszą zostać zbudowane i przetestowane. Dzięki DevOps'owi możemy zamelinować pipeline z automatyzacjami, które będą nam uruchamiały wszelkie build'y i testy na każdą nową zmiane w projekcie.
+
+Wy wypadku dużego zespołu nasz projekt często musi zostać uruchomiony na wielu różnych maszynach, nierzadko też na różnych systemach operacyjnych. DevOps rozwiązuje nam tą kwestię za pomocą konteneryzacji, dzięki czemu nasze środowisko z łatwością może zostać zreplikowany na wielu maszynach czy instancjach.
+
+Podsumowując w zależności od naszego projektu jak i rozmiaru zespołu DevOps będzie nam mniej lub bardziej potrzebny. Często też w zależności od natury projektu będziemy potrzebowali innych systemów DevOps'owych.
